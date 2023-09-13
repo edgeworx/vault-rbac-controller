@@ -2,13 +2,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namePrefix: vault-rbac-
 namespace: vault
-commonLabels:
-  app.kubernetes.io/name: vault-rbac-controller
 resources:
 - ./base
-patchesStrategicMerge:
-- config_patch.yaml
 images:
 - name: controller
   newName: ghcr.io/tinyzimmer/vault-rbac-controller
   newTag: latest
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/name: vault-rbac-controller
+patches:
+- path: config_patch.yaml
