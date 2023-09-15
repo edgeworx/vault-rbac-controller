@@ -7,7 +7,7 @@ spec:
   replicas: 1
   # selector:
   #   matchLabels:
-  #     app.kubernetes.io/instance: tackle-api
+  #     app.kubernetes.io/instance: controller 
   template:
     metadata:
       annotations:
@@ -35,14 +35,14 @@ spec:
             - name: http
               containerPort: 8081
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /healthz
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /readyz
-          #     port: http
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
           resources:
             requests:
               cpu: 100m

@@ -21,9 +21,9 @@ server:
       name: vault-tls
   extraEnvironmentVars:
     VAULT_CACERT: /vault/userconfig/vault-tls/ca.crt
-  # readinessProbe:
-  #   enabled: true
-  #   path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
-  # livenessProbe:
-  #   enabled: true
-  #   path: "/v1/sys/health?standbyok=true"
+  readinessProbe:
+    enabled: true
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+  livenessProbe:
+    enabled: true
+    path: "/v1/sys/health?standbyok=true"
